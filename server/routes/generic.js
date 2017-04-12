@@ -7,7 +7,11 @@ let allJobs = [
 ];
 
 jobRouter.get('/', function showJobData(req, res, next) {
-  res.json(allJobs);
+  let output = [];
+  allJobs.forEach(function(job){
+    output.push({id:job.id, company:job.company, link: job.link});
+  })
+  res.json(output);
 });
 
 
