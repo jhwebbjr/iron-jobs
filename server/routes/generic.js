@@ -10,9 +10,27 @@ jobRouter.get('/', function showJobData(req, res, next) {
   let output = [];
   allJobs.forEach(function(job){
     output.push({id:job.id, company:job.company, link: job.link});
-  })
+  });
   res.json(output);
 });
+
+
+function addAJob(req, res, next){
+  let newJob = {
+    id: "",
+    company: req.body.company,
+    link: req.body.link,
+    notes: req.body.notes,
+    createTime: ""
+  };
+
+  allJobs.push(newJob);
+  console.log(newJob);
+  res.json({message: 'I added it!', newJob: req.body.newJob});
+}
+
+jobRouter.post('/', addAJob);
+
 
 
 module.exports = jobRouter;
