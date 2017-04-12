@@ -5,7 +5,9 @@ let app = express();
 
 app.use(bodyParser.json());
 
-app.use(express.static('./client/public/'))
+app.use(express.static('./client/public/'));
+app.use( '/api/jobs', require('./routes/generic.js'));
+
 
 // app.get('/', function showHome(req, res, next) {
 //     console.log(req.url);
