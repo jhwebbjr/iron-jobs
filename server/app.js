@@ -1,16 +1,21 @@
-
-
 const express = require('express');
+const bodyParser = require('body-parser');
 
 let app = express();
 
-app.get('/', function showHome(req, res, next) {
-    console.log(request.url);
+app.use(bodyParser.json());
 
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html');
-    response.end('<h1>Hello World</h1>');
-});
+app.use(express.static('./client/public/'))
+
+// app.get('/', function showHome(req, res, next) {
+//     console.log(req.url);
+//
+//     res.status(200);
+//     res.setHeader('Content-Type', 'text/html');
+//     res.end('<h1>Hello World</h1>');
+// });
+
+
 
 app.listen(3000, function ServerIsUp() {
     console.log('The server is up!');
