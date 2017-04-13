@@ -5,6 +5,10 @@ let allJobs = [
   {id: "2", company: "bank of america", link: "www.bofa.com", notes: "rip you off", createTime: "1220"},
   {id: "3", company: "district taco", link: "www.districttaco.com", notes: "queso con chile", createTime: "1245"}
 ];
+/**
+ * Returns thr id company, and link object keys by looping thrrough the data
+ * @type {Array}
+ */
 jobRouter.get('/', function showJobData(req, res, next) {
     let output = [];
     allJobs.forEach(function(job) {
@@ -16,8 +20,13 @@ jobRouter.get('/', function showJobData(req, res, next) {
     });
     res.json(output);
 });
-jobRouter.post('/', addAJob);
 
+/**
+ * Takes job data and pushs it to the allJobs array.
+ * @param {Request}   req  Request argument
+ * @param {Respense}   res Response argument
+ * @param {Function} next
+ */
 function addAJob(req, res, next) {
     let now = new Date();
     console.log(now);
@@ -34,11 +43,11 @@ function addAJob(req, res, next) {
     console.log(newJob);
 
     res.json({
-        message: 'I added it!',
+        message: 'Job added',
         newJob: req.body.newJob
     });
 }
 
-
+jobRouter.post('/', addAJob);
 
 module.exports = jobRouter;
