@@ -14,14 +14,17 @@ jobRouter.get('/', function showJobData(req, res, next) {
   res.json(output);
 });
 
+let newId =(allJobs.length + 1).toString(); //this is not a good way to do this 
+let now = new Date();
+console.log(now);
 
 function addAJob(req, res, next){
   let newJob = {
-    id: "",
+    id: newId,
     company: req.body.company,
     link: req.body.link,
     notes: req.body.notes,
-    createTime: ""
+    createTime: now
   };
 
   allJobs.push(newJob);
