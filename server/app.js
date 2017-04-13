@@ -6,6 +6,7 @@ let app = express();
 app.use(bodyParser.json());
 
 app.use(express.static('./client/public/'));
+
 app.use( '/api/jobs', require('./routes/generic.js'));
 
 app.use(require('./middleware/page-not-found.middleware.js'));

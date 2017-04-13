@@ -5,26 +5,28 @@ let allJobs = [
   {id: "2", company: "bank of america", link: "www.bofa.com", notes: "rip you off", createTime: "1220"},
   {id: "3", company: "district taco", link: "www.districttaco.com", notes: "queso con chile", createTime: "1245"}
 ];
+
 /**
  * Returns thr id company, and link object keys by looping thrrough the data
  * @type {Array}
  */
 jobRouter.get('/', function showJobData(req, res, next) {
+  //add error handling
     let output = [];
-    allJobs.forEach(function(job) {
-        output.push({
+  res.json(allJobs.map(function(job){
+        return{
             id: job.id,
             company: job.company,
             link: job.link
-        });
-    });
-    res.json(output);
+        };
+    }));
 });
+
 
 /**
  * Takes job data and pushs it to the allJobs array.
- * @param {Request}   req  Request argument
- * @param {Respense}   res Response argument
+ * @param {Object}   req  Request argument
+ * @param {Object}   res Response argument
  * @param {Function} next
  */
 function addAJob(req, res, next) {
@@ -46,6 +48,7 @@ function addAJob(req, res, next) {
         message: 'Job added',
         newJob: req.body.newJob
     });
+
 }
 
 jobRouter.post('/', addAJob);
